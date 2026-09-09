@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Traveling Exhibition of Electrical Wonders — J.J. Thomson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink-dark: #171726;
+    --ink-darker: #101018;
+    --phosphor: #7CFFB2;
+    --phosphor-dim: #4FCB86;
+    --brass: #D4A24C;
+    --brass-dim: #A67D38;
+    --parchment: #F6EFE0;
+    --parchment-shadow: #E4D9C0;
+    --text-on-dark: #EDEAE3;
+    --text-on-dark-dim: #A9A6B8;
+    --text-on-parchment: #2B2318;
+    --text-on-parchment-dim: #6B5E48;
+    --danger: #C1462F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at top, #232338 0%, var(--ink-darker) 65%);
+    color: var(--text-on-dark);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+
+  /* ---------- Hero / playbill header ---------- */
+  .hero {
+    text-align: center;
+    padding: 8px 0 36px;
+    border-bottom: 1px solid rgba(212, 162, 76, 0.35);
+    margin-bottom: 36px;
+  }
+
+  .hero .eyebrow {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--brass);
+    letter-spacing: 0.02em;
+    margin: 0 0 6px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(32px, 6vw, 46px);
+    line-height: 1.1;
+    margin: 0 0 14px;
+    color: var(--text-on-dark);
+  }
+
+  .hero .subhead {
+    font-size: 17px;
+    color: var(--text-on-dark-dim);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 22px 0;
+    color: var(--brass);
+  }
+  .ornament::before, .ornament::after {
+    content: "";
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--brass));
+  }
+  .ornament::after { background: linear-gradient(90deg, var(--brass), transparent); }
+
+  .learning-target {
+    background: rgba(212, 162, 76, 0.08);
+    border: 1px solid rgba(212, 162, 76, 0.3);
+    border-radius: 4px;
+    padding: 14px 20px;
+    font-size: 15px;
+    color: var(--text-on-dark);
+    margin-bottom: 8px;
+  }
+  .learning-target strong { color: var(--phosphor); }
+
+  /* ---------- Image / gif placeholders ---------- */
+  .media-slot {
+    border: 1.5px dashed rgba(237, 234, 227, 0.35);
+    border-radius: 4px;
+    padding: 28px 16px;
+    text-align: center;
+    color: var(--text-on-dark-dim);
+    font-size: 13px;
+    margin: 18px 0;
+    background: rgba(255,255,255,0.02);
+  }
+  .media-slot .icon { font-size: 22px; display: block; margin-bottom: 6px; opacity: 0.6; }
+  .media-slot .suggestion { font-style: italic; margin-top: 4px; }
+
+  /* ---------- Body prose ---------- */
+  p { font-size: 16px; color: var(--text-on-dark); }
+  .lede { color: var(--text-on-dark-dim); }
+
+  /* ---------- Exhibit cards ---------- */
+  .exhibit {
+    background: var(--parchment);
+    color: var(--text-on-parchment);
+    border-radius: 3px;
+    margin: 44px 0;
+    padding: 32px 30px 28px;
+    position: relative;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  }
+  .exhibit::before, .exhibit::after,
+  .exhibit .corner-bl, .exhibit .corner-br {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--brass);
+  }
+  .exhibit::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .exhibit::after { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+  .exhibit .corner-bl { position: absolute; bottom: 8px; left: 8px; border-right: none; border-top: none; }
+  .exhibit .corner-br { position: absolute; bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+  .exhibit-plaque {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--brass-dim);
+    font-size: 14px;
+    margin: 0 0 4px;
+  }
+
+  .exhibit h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0 0 14px;
+    color: var(--text-on-parchment);
+  }
+
+  .exhibit p { color: var(--text-on-parchment); font-size: 15.5px; }
+  .exhibit .media-slot { border-color: rgba(43,35,24,0.3); color: var(--text-on-parchment-dim); background: rgba(43,35,24,0.03); }
+
+  .prompt {
+    font-weight: 600;
+    color: var(--text-on-parchment);
+    margin: 18px 0 10px;
+  }
+
+  /* ---------- Sim frame ---------- */
+  .sim-frame {
+    background: var(--ink-darker);
+    border-radius: 4px;
+    padding: 14px 10px 10px;
+    margin: 6px 0 16px;
+    border: 3px solid var(--brass-dim);
+  }
+  .sim-frame svg { width: 100%; height: auto; display: block; touch-action: none; }
+  .sim-caption {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--text-on-dark-dim);
+    margin-top: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .beam { stroke: var(--phosphor); stroke-width: 3; fill: none; filter: drop-shadow(0 0 4px rgba(124,255,178,0.8)); }
+  .beam-dim { opacity: 0.15; }
+  .apparatus-line { stroke: #6B6B85; stroke-width: 2; fill: none; }
+  .apparatus-fill { fill: #2A2A3E; stroke: #6B6B85; stroke-width: 2; }
+
+  .magnet {
+    cursor: grab;
+    touch-action: none;
+  }
+  .magnet:active { cursor: grabbing; }
+  .magnet rect { fill: var(--danger); stroke: #8a2f1d; stroke-width: 1.5; }
+  .magnet .pole-n { fill: #E8E8E8; font-size: 11px; font-weight: 700; font-family: Inter, sans-serif; }
+  .magnet .pole-s { fill: #E8E8E8; font-size: 11px; font-weight: 700; font-family: Inter, sans-serif; }
+
+  .needle {
+    stroke: var(--phosphor);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transform-origin: 610px 175px;
+    transition: transform 0.35s cubic-bezier(.4,1.4,.6,1);
+  }
+  .gauge-label { fill: var(--text-on-dark-dim); font-size: 10px; font-family: Inter, sans-serif; }
+  .reading-text { fill: var(--phosphor); font-size: 13px; font-weight: 700; font-family: Inter, sans-serif; }
+
+  /* ---------- Buttons / toggles ---------- */
+  .btn {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 3px;
+    border: 1.5px solid var(--text-on-parchment);
+    background: transparent;
+    color: var(--text-on-parchment);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn:hover { background: var(--text-on-parchment); color: var(--parchment); }
+  .btn.primary {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+  }
+  .btn.primary:hover { background: #a53a26; }
+
+  .toggle-row { display: flex; align-items: center; gap: 12px; margin: 4px 0 4px; }
+  .toggle {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: #444;
+    border-radius: 14px;
+    cursor: pointer;
+    border: none;
+    flex-shrink: 0;
+  }
+  .toggle::after {
+    content: "";
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #ddd;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .toggle.on { background: var(--phosphor-dim); }
+  .toggle.on::after { transform: translateX(24px); background: var(--phosphor); }
+  .toggle-label { font-size: 13.5px; font-weight: 600; color: var(--text-on-dark); }
+
+  /* ---------- Reveal ---------- */
+  details.reveal {
+    background: rgba(43, 35, 24, 0.06);
+    border: 1px solid rgba(43, 35, 24, 0.25);
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 14px;
+  }
+  details.reveal summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--danger);
+    font-size: 14.5px;
+  }
+  details.reveal[open] summary { margin-bottom: 8px; }
+  details.reveal p { margin: 8px 0; }
+
+  /* ---------- Size compare (Exhibit 3) ---------- */
+  .size-compare {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 40px;
+    height: 140px;
+    margin: 12px 0;
+    padding: 10px;
+    background: var(--ink-darker);
+    border-radius: 4px;
+    border: 3px solid var(--brass-dim);
+  }
+  .size-item { text-align: center; }
+  .size-item .circle {
+    background: var(--phosphor);
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(124,255,178,0.7);
+    transition: width 0.6s ease, height 0.6s ease;
+  }
+  .size-item .lbl { font-size: 11.5px; color: var(--text-on-dark-dim); margin-top: 6px; }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--danger);
+    margin: 10px 0;
+  }
+
+  /* ---------- Synthesis ---------- */
+  .synthesis {
+    text-align: center;
+    padding: 36px 0 8px;
+  }
+  .synthesis h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--phosphor);
+    margin: 0 0 4px;
+  }
+  .synthesis .sub { color: var(--text-on-dark-dim); font-size: 14px; margin-bottom: 24px; }
+  .verdict-list {
+    text-align: left;
+    max-width: 520px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+  }
+  .verdict-list li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(212,162,76,0.2);
+  }
+  .verdict-list li:last-child { border-bottom: none; }
+  .verdict-num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--brass);
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  /* ---------- Notebook check ---------- */
+  .notebook {
+    background: rgba(124,255,178,0.06);
+    border: 1px solid rgba(124,255,178,0.25);
+    border-radius: 4px;
+    padding: 24px 26px;
+    margin-top: 40px;
+  }
+  .notebook h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--phosphor);
+    margin: 0 0 12px;
+    font-size: 19px;
+  }
+  .notebook ol { padding-left: 20px; margin: 0; }
+  .notebook li { margin-bottom: 10px; font-size: 15px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">A Demonstration in Three Exhibits</p>
+    <h1>The Traveling Exhibition of<br>Electrical Wonders</h1>
+    <p class="subhead">Step into a darkened lecture hall, 1897 — where J.J. Thomson is about to show the world that atoms are not as simple as they seem.</p>
+  </div>
+
+  <div class="learning-target">
+    <strong>I can</strong> use evidence from Thomson's cathode ray experiments to explain how scientists concluded that atoms contain smaller, charged particles.
+  </div>
+
+  <div class="media-slot">
+    <span class="icon">&#9679;</span>
+    Insert image or GIF here
+    <div class="suggestion">suggested: a glowing cathode ray tube, or a photo/illustration of a 19th-century science lecture hall</div>
+  </div>
+
+  <p>In the late 1800s, science was entertainment. Traveling lecturers packed theaters with audiences eager to see electricity tamed and put on display — sparks, glowing tubes, bodies wired up like circuits. It was part science fair, part magic show.</p>
+
+  <p class="lede">One of the most popular attractions was the <strong>cathode ray tube</strong>: a sealed glass tube, most of its air pumped out, with two metal plates sealed inside — a <strong>cathode</strong>, wired to the negative side of a power source, and an <strong>anode</strong>, wired to the positive side. Switch on the power, and a glowing beam shoots from the cathode all the way across the tube to the anode.</p>
+
+  <div class="sim-frame">
+    <svg id="tubeDiagram" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- battery -->
+      <rect x="20" y="80" width="34" height="40" rx="2" fill="#2A2A3E" stroke="#6B6B85" stroke-width="2"></rect>
+      <text x="37" y="104" text-anchor="middle" class="gauge-label" fill="#cfcfe0">battery</text>
+      <text x="37" y="72" text-anchor="middle" class="gauge-label" fill="#FF9E7C">&minus;</text>
+      <text x="37" y="136" text-anchor="middle" class="gauge-label" fill="#7CC7FF">+</text>
+      <!-- wire from battery to cathode -->
+      <path d="M37,80 L37,50 L120,50 L120,80" class="apparatus-line"></path>
+      <!-- sealed tube -->
+      <rect x="110" y="30" width="480" height="140" rx="16" fill="none" stroke="#6B6B85" stroke-width="2.5"></rect>
+      <text x="350" y="20" text-anchor="middle" class="gauge-label">SEALED GLASS TUBE (air removed)</text>
+      <!-- cathode plate -->
+      <rect x="130" y="55" width="10" height="90" fill="#D4A24C"></rect>
+      <text x="135" y="165" text-anchor="middle" class="gauge-label" fill="#D4A24C">CATHODE</text>
+      <text x="135" y="177" text-anchor="middle" class="gauge-label" fill="#8a8aa0" font-size="9">(metal plate)</text>
+      <!-- anode plate -->
+      <rect x="560" y="55" width="10" height="90" fill="#D4A24C"></rect>
+      <text x="565" y="165" text-anchor="middle" class="gauge-label" fill="#D4A24C">ANODE</text>
+      <!-- beam -->
+      <path d="M140,100 L560,100" class="beam"></path>
+      <!-- wire from anode to battery -->
+      <path d="M565,55 L565,20 L654,20 L654,80" class="apparatus-line"></path>
+      <rect x="637" y="80" width="34" height="40" rx="2" fill="#2A2A3E" stroke="#6B6B85" stroke-width="2" opacity="0"></rect>
+      <path d="M654,80 L654,120 L37,120" class="apparatus-line" opacity="0"></path>
+      <!-- callouts -->
+      <text x="350" y="90" text-anchor="middle" font-size="11" fill="#7CFFB2" font-weight="700">empty space — no wire here</text>
+      <line x1="145" y1="100" x2="145" y2="115" stroke="#7CFFB2" stroke-width="1" stroke-dasharray="2,2"></line>
+      <text x="145" y="130" text-anchor="middle" font-size="10.5" fill="#7CFFB2">beam starts right at the metal</text>
+    </svg>
+    <p class="sim-caption">Notice: the wire only connects the battery to each plate. Between the cathode and anode, inside the tube, there's nothing but empty space — yet the beam crosses it.</p>
+  </div>
+
+  <p>Two things about this beam confounded scientists.</p>
+
+  <p><strong>First — electricity without a wire.</strong> Every circuit anyone had ever built moved electricity along a continuous metal path, start to finish. But inside this tube, the beam crossed open, empty space with no wire connecting the two plates at all. If electricity could move through nothing, what did that actually mean about what electricity <em>was</em>? Could a form of power someday travel through open air — into a room, a building — without a single wire strung between?</p>
+
+  <p><strong>Second — where was the beam coming from?</strong> The beam appeared to start right at the cathode's metal surface. Could the beam somehow be made of tiny pieces of that very metal, breaking free and flying across the tube? If so, that would mean atoms — supposedly the smallest, most "uncuttable" unit of matter — weren't so uncuttable after all.</p>
+
+  <p>Nobody knew for certain. J.J. Thomson set out to find out — with three experiments. Explore each one below. Drag, toggle, and test things yourself before you find out what Thomson actually discovered.</p>
+
+  <div class="ornament">&#9670;</div>
+
+  <!-- ===================== EXHIBIT 1 ===================== -->
+  <div class="exhibit">
+    <span class="corner-bl"></span><span class="corner-br"></span>
+    <p class="exhibit-plaque">Exhibit No. 1</p>
+    <h2>Does the Ray Carry Charge?</h2>
+
+    <div class="media-slot">
+      <span class="icon">&#9679;</span>
+      Insert image or GIF here
+      <div class="suggestion">suggested: a diagram or photo of an electrometer, or the real apparatus from Thomson's first experiment</div>
+    </div>
+
+    <p>Thomson aimed the cathode ray at a device called an <strong>electrometer</strong>, which detects electric charge. He rigged up a magnet so he could bend the ray away from the electrometer's opening whenever he chose.</p>
+
+    <p class="prompt">Try it: drag the magnet closer to (or farther from) the beam. Watch what happens to both the beam and the electrometer reading.</p>
+
+    <div class="sim-frame">
+      <svg id="sim1" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- cathode tube -->
+        <rect x="30" y="110" width="60" height="40" rx="4" class="apparatus-fill"></rect>
+        <text x="60" y="135" text-anchor="middle" class="gauge-label" fill="#cfcfe0">tube</text>
+        <!-- beam paths -->
+        <path id="beamPath1" class="beam" d="M90,130 Q350,130 610,130"></path>
+        <!-- electrometer housing -->
+        <rect x="600" y="105" width="70" height="50" rx="4" class="apparatus-fill"></rect>
+        <rect x="597" y="122" width="10" height="16" fill="#111119"></rect>
+        <!-- gauge -->
+        <circle cx="610" cy="200" r="34" fill="#1c1c2c" stroke="#6B6B85" stroke-width="2"></circle>
+        <line x1="610" y1="200" x2="610" y2="175" class="needle" id="needle1"></line>
+        <circle cx="610" cy="200" r="3" fill="#cfcfe0"></circle>
+        <text x="610" y="245" text-anchor="middle" class="gauge-label">ELECTROMETER</text>
+        <text x="610" y="80" text-anchor="middle" class="reading-text" id="reading1">CHARGE DETECTED</text>
+
+        <!-- draggable magnet -->
+        <g class="magnet" id="magnet1" transform="translate(340,50)">
+          <g id="magnetInner1">
+            <rect x="-22" y="-14" width="44" height="28" rx="3"></rect>
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="#5a1c10" stroke-width="1.5"></line>
+            <text x="-11" y="4" text-anchor="middle" class="pole-n">N</text>
+            <text x="11" y="4" text-anchor="middle" class="pole-s">S</text>
+          </g>
+        </g>
+      </svg>
+      <div class="toggle-row" style="justify-content:center; margin-top:6px;">
+        <button class="btn" id="flipMagnet1">Flip Magnet</button>
+      </div>
+      <p class="sim-caption">Drag the magnet — closer bends the beam more. Flip it to reverse which way the beam bends.</p>
+    </div>
+
+    <details class="reveal">
+      <summary>Click to reveal what Thomson found</summary>
+      <p>When the beam reached the electrometer's opening undisturbed, the device registered a strong <strong>negative</strong> charge. When Thomson bent the beam away with a magnet, the charge reading disappeared too.</p>
+      <p><strong>Conclusion:</strong> The negative charge and the beam can't be separated — they travel together. Whatever this ray is, it carries charge with it.</p>
+    </details>
+  </div>
+
+  <!-- ===================== EXHIBIT 2 ===================== -->
+  <div class="exhibit">
+    <span class="corner-bl"></span><span class="corner-br"></span>
+    <p class="exhibit-plaque">Exhibit No. 2</p>
+    <h2>Can an Electric Field Push the Ray?</h2>
+
+    <div class="media-slot">
+      <span class="icon">&#9679;</span>
+      Insert image or GIF here
+      <div class="suggestion">suggested: a diagram of charged parallel plates, or a photo of Thomson's second experimental tube</div>
+    </div>
+
+    <p>If the cathode ray really is made of charged particles, it should be pushed off course by an electric field — the same way a charged balloon gets pulled toward (or pushed away from) a charged object.</p>
+
+    <p class="prompt">Try it: switch the electric field on and off. Watch what happens to the beam.</p>
+
+    <div class="sim-frame">
+      <svg id="sim2" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="90" width="60" height="40" rx="4" class="apparatus-fill"></rect>
+        <text x="60" y="115" text-anchor="middle" class="gauge-label" fill="#cfcfe0">tube</text>
+
+        <!-- charged plates -->
+        <rect x="230" y="40" width="240" height="8" fill="#7CC7FF"></rect>
+        <text x="350" y="32" text-anchor="middle" class="gauge-label" fill="#7CC7FF">+ PLATE</text>
+        <rect x="230" y="172" width="240" height="8" fill="#FF9E7C"></rect>
+        <text x="350" y="200" text-anchor="middle" class="gauge-label" fill="#FF9E7C">&minus; PLATE</text>
+
+        <path id="beamOff" class="beam" d="M90,110 L640,110"></path>
+        <path id="beamOn" class="beam" d="M90,110 C300,110 320,55 640,55" style="display:none;"></path>
+
+        <text x="610" y="115" text-anchor="middle" class="gauge-label">screen</text>
+        <rect x="620" y="70" width="10" height="80" class="apparatus-fill"></rect>
+      </svg>
+      <div class="toggle-row" style="justify-content:center; margin-top:10px;">
+        <span class="toggle-label">Field:</span>
+        <button class="toggle" id="fieldToggle" aria-pressed="false"></button>
+        <span class="toggle-label" id="fieldStatus">OFF</span>
+      </div>
+    </div>
+
+    <details class="reveal">
+      <summary>Click to reveal what Thomson found</summary>
+      <p>Yes — once Thomson removed nearly all the leftover gas from the tube, the beam bent through the electric field exactly the way a stream of charged particles should.</p>
+      <p><strong>Conclusion:</strong> This confirmed the cathode ray really was made of charged particles — not light, and not some other kind of wave.</p>
+    </details>
+  </div>
+
+  <!-- ===================== EXHIBIT 3 ===================== -->
+  <div class="exhibit">
+    <span class="corner-bl"></span><span class="corner-br"></span>
+    <p class="exhibit-plaque">Exhibit No. 3</p>
+    <h2>How Big Are These Particles?</h2>
+
+    <div class="media-slot">
+      <span class="icon">&#9679;</span>
+      Insert image or GIF here
+      <div class="suggestion">suggested: a size-comparison illustration, or a photo of Thomson's magnetic deflection apparatus</div>
+    </div>
+
+    <p>Thomson used a magnet to measure how much force it took to push the beam off course. This let him compare the size of these mystery particles to the size of an atom — using hydrogen, the smallest known atom at the time, as the yardstick.</p>
+
+    <p class="prompt">Try it: drag the slider to guess how big you think the particle is compared to a hydrogen atom. Then reveal what Thomson actually found.</p>
+
+    <div class="size-compare">
+      <div class="size-item">
+        <div class="circle" id="hydrogenCircle" style="width:70px; height:70px;"></div>
+        <div class="lbl">hydrogen atom</div>
+      </div>
+      <div class="size-item">
+        <div class="circle" id="particleCircle" style="width:70px; height:70px;"></div>
+        <div class="lbl">cathode ray particle</div>
+      </div>
+    </div>
+    <input type="range" id="sizeSlider" min="2" max="70" value="70">
+    <div style="text-align:center; font-size:13px; color: var(--text-on-dark-dim);" id="sizeSliderLabel">Your guess: same size as hydrogen</div>
+
+    <div style="text-align:center; margin-top:14px;">
+      <button class="btn primary" id="revealSize">Reveal Thomson's actual finding</button>
+    </div>
+
+    <details class="reveal" id="sizeReveal">
+      <summary>What did Thomson conclude?</summary>
+      <p>The particles turned out to be far smaller and lighter than even a hydrogen atom — <strong>more than 1,000 times smaller.</strong></p>
+      <p><strong>Conclusion:</strong> These particles were too small to be atoms themselves. They had to be tiny pieces <em>of</em> atoms — meaning atoms are not the smallest form of matter after all.</p>
+    </details>
+  </div>
+
+  <div class="ornament">&#9670;</div>
+
+  <!-- ===================== SYNTHESIS ===================== -->
+  <div class="synthesis">
+    <h2>The Verdict</h2>
+    <p class="sub">Based on all three exhibits, Thomson reached three conclusions</p>
+    <ul class="verdict-list">
+      <li><span class="verdict-num">1</span><span>Cathode rays are made of tiny, negatively charged particles — we now call these <strong>electrons</strong>.</span></li>
+      <li><span class="verdict-num">2</span><span>Electrons are <strong>parts of atoms</strong>, not separate substances.</span></li>
+      <li><span class="verdict-num">3</span><span>Electrons can <strong>move</strong> — they aren't locked in place.</span></li>
+    </ul>
+    <p style="max-width:520px; margin: 22px auto 0; color: var(--text-on-dark-dim); font-size:14.5px;">This evidence led Thomson to propose a new model of the atom — one with internal structure, electrons embedded inside it: the <strong>Plum Pudding Model</strong>.</p>
+  </div>
+
+  <div class="notebook">
+    <h3>Check Your Understanding</h3>
+    <p style="color: var(--text-on-dark-dim); font-size: 14px; margin-top:-4px;">In your notebook, answer the following in your own words:</p>
+    <ol>
+      <li>What evidence showed that the cathode ray carried an electric charge?</li>
+      <li>What evidence showed that the cathode ray was made of particles smaller than an atom?</li>
+      <li>Why did this evidence force scientists to change their model of the atom?</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  // ---------- Exhibit 1: draggable magnet ----------
+  var svg1 = document.getElementById('sim1');
+  var magnet1 = document.getElementById('magnet1');
+  var beamPath1 = document.getElementById('beamPath1');
+  var needle1 = document.getElementById('needle1');
+  var reading1 = document.getElementById('reading1');
+
+  var mx = 340, my = 50; // magnet position (top-left of translate, matches initial transform)
+  var dragging1 = false;
+  var flipped1 = false;
+  var magnetInner1 = document.getElementById('magnetInner1');
+  var flipBtn1 = document.getElementById('flipMagnet1');
+
+  function svgPoint(svg, evt) {
+    var pt = svg.createSVGPoint();
+    var touch = evt.touches ? evt.touches[0] : evt;
+    pt.x = touch.clientX;
+    pt.y = touch.clientY;
+    var ctm = svg.getScreenCTM().inverse();
+    return pt.matrixTransform(ctm);
+  }
+
+  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+  function updateBeam1() {
+    var beamY = 130;
+    var distance = beamY - my; // vertical distance from magnet to beam (magnet is above)
+    distance = clamp(distance, 15, 130);
+    var proximityStrength = clamp(1 - (distance - 15) / (110), 0, 1); // closer = stronger
+    var horizFalloff = clamp(1 - Math.abs(mx - 350) / 320, 0, 1);
+    var bend = 95 * proximityStrength * horizFalloff;
+    var bendSigned = flipped1 ? -bend : bend;
+
+    var endY = beamY - bendSigned;
+    var midY = beamY - bendSigned * 1.15;
+    beamPath1.setAttribute('d', 'M90,130 Q350,' + midY.toFixed(1) + ' 610,' + endY.toFixed(1));
+
+    magnet1.setAttribute('transform', 'translate(' + mx + ',' + my + ')');
+
+    var missed = Math.abs(endY - 130) > 16;
+    if (missed) {
+      needle1.style.transform = 'rotate(0deg)';
+      reading1.textContent = 'NO CHARGE DETECTED';
+      reading1.setAttribute('fill', '#8a8aa0');
+    } else {
+      needle1.style.transform = 'rotate(-52deg)';
+      reading1.textContent = 'CHARGE DETECTED';
+      reading1.setAttribute('fill', '#7CFFB2');
+    }
+  }
+
+  function startDrag1(evt) { dragging1 = true; evt.preventDefault(); }
+  function moveDrag1(evt) {
+    if (!dragging1) return;
+    var p = svgPoint(svg1, evt);
+    mx = clamp(p.x, 100, 600);
+    my = clamp(p.y, 10, 118);
+    updateBeam1();
+    evt.preventDefault();
+  }
+  function endDrag1() { dragging1 = false; }
+
+  flipBtn1.addEventListener('click', function() {
+    flipped1 = !flipped1;
+    magnetInner1.setAttribute('transform', flipped1 ? 'rotate(180)' : '');
+    updateBeam1();
+  });
+
+  magnet1.addEventListener('mousedown', startDrag1);
+  magnet1.addEventListener('touchstart', startDrag1, {passive:false});
+  window.addEventListener('mousemove', moveDrag1);
+  window.addEventListener('touchmove', moveDrag1, {passive:false});
+  window.addEventListener('mouseup', endDrag1);
+  window.addEventListener('touchend', endDrag1);
+
+  updateBeam1();
+
+  // ---------- Exhibit 2: field toggle ----------
+  var fieldToggle = document.getElementById('fieldToggle');
+  var fieldStatus = document.getElementById('fieldStatus');
+  var beamOff = document.getElementById('beamOff');
+  var beamOn = document.getElementById('beamOn');
+  var fieldOn = false;
+
+  fieldToggle.addEventListener('click', function() {
+    fieldOn = !fieldOn;
+    fieldToggle.classList.toggle('on', fieldOn);
+    fieldToggle.setAttribute('aria-pressed', fieldOn);
+    fieldStatus.textContent = fieldOn ? 'ON' : 'OFF';
+    beamOff.style.display = fieldOn ? 'none' : '';
+    beamOn.style.display = fieldOn ? '' : 'none';
+  });
+
+  // ---------- Exhibit 3: size slider ----------
+  var sizeSlider = document.getElementById('sizeSlider');
+  var particleCircle = document.getElementById('particleCircle');
+  var sizeSliderLabel = document.getElementById('sizeSliderLabel');
+  var revealBtn = document.getElementById('revealSize');
+  var sizeReveal = document.getElementById('sizeReveal');
+
+  function updateSizeSlider() {
+    var v = parseInt(sizeSlider.value, 10);
+    particleCircle.style.width = v + 'px';
+    particleCircle.style.height = v + 'px';
+    if (v >= 65) {
+      sizeSliderLabel.textContent = 'Your guess: same size as hydrogen';
+    } else if (v >= 35) {
+      sizeSliderLabel.textContent = 'Your guess: somewhat smaller than hydrogen';
+    } else if (v >= 12) {
+      sizeSliderLabel.textContent = 'Your guess: much smaller than hydrogen';
+    } else {
+      sizeSliderLabel.textContent = 'Your guess: almost nothing left';
+    }
+  }
+  sizeSlider.addEventListener('input', updateSizeSlider);
+  updateSizeSlider();
+
+  revealBtn.addEventListener('click', function() {
+    sizeSlider.value = 3;
+    updateSizeSlider();
+    sizeSliderLabel.textContent = "Thomson's finding: over 1,000\u00D7 smaller";
+    sizeReveal.setAttribute('open', 'true');
+    sizeReveal.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+})();
+</script>
+</body>
+</html>

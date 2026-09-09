@@ -115,6 +115,25 @@
   .media-slot .icon { font-size: 22px; display: block; margin-bottom: 6px; opacity: 0.6; }
   .media-slot .suggestion { font-style: italic; margin-top: 4px; }
 
+  .gallery3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 18px 0 6px;
+  }
+  .gallery3 img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid rgba(212,162,76,0.3);
+    filter: sepia(25%) contrast(1.05);
+  }
+  @media (max-width: 500px) {
+    .gallery3 { grid-template-columns: 1fr; }
+    .gallery3 img { height: 180px; }
+  }
+
   /* ---------- Body prose ---------- */
   p { font-size: 16px; color: var(--text-on-dark); }
   .lede { color: var(--text-on-dark-dim); }
@@ -369,15 +388,21 @@
     <strong>I can</strong> use evidence from Thomson's cathode ray experiments to explain how scientists concluded that atoms contain smaller, charged particles.
   </div>
 
-  <div class="media-slot">
-    <span class="icon">&#9679;</span>
-    Insert image or GIF here
-    <div class="suggestion">suggested: a glowing cathode ray tube, or a photo/illustration of a 19th-century science lecture hall</div>
+  <div class="gallery3">
+    <img src="WF3.jpg" alt="A giant apparatus on display at a 19th-century exhibition, with visitors walking past" loading="lazy">
+    <img src="WF1.jpg" alt="Crowds gathered around a giant globe and periodic table exhibit at a world's fair" loading="lazy">
+    <img src="WF2.jpg" alt="The machine hall at a 19th-century Paris exposition, filled with enormous generators and visitors" loading="lazy">
   </div>
+  <p class="sim-caption" style="margin-bottom:24px;">Scenes from 19th and early 20th-century science exhibitions — where the public came to see the future of electricity on display.</p>
 
   <p>In the late 1800s, science was entertainment. Traveling lecturers packed theaters with audiences eager to see electricity tamed and put on display — sparks, glowing tubes, bodies wired up like circuits. It was part science fair, part magic show.</p>
 
   <p class="lede">One of the most popular attractions was the <strong>cathode ray tube</strong>: a sealed glass tube, most of its air pumped out, with two metal plates sealed inside — a <strong>cathode</strong>, wired to the negative side of a power source, and an <strong>anode</strong>, wired to the positive side. Switch on the power, and a glowing beam shoots from the cathode all the way across the tube to the anode.</p>
+
+  <div style="text-align:center; margin: 18px 0;">
+    <img src="neontubes.gif" alt="A row of glowing discharge tubes in different colors" style="max-width:100%; border-radius:4px; border:1px solid rgba(212,162,76,0.3);">
+    <p class="sim-caption">Discharge tubes like these were a genuine crowd-pleaser — no one had seen glass glow like this before.</p>
+  </div>
 
   <div class="sim-frame">
     <svg id="tubeDiagram" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
@@ -412,6 +437,11 @@
     <p class="sim-caption">Notice: the wire only connects the battery to each plate. Between the cathode and anode, inside the tube, there's nothing but empty space — yet the beam crosses it.</p>
   </div>
 
+  <div style="text-align:center; margin: 8px 0 18px;">
+    <img src="cathoderayunlit.PNG" alt="A real cathode ray tube, unlit, with the vacuum tube, aluminum electrodes, and fluorescent screen labeled" style="max-width:100%; border-radius:4px; border:1px solid rgba(212,162,76,0.3); background:#fff; padding:6px;">
+    <p class="sim-caption">A real cathode ray tube — same parts as the diagram above, unlit.</p>
+  </div>
+
   <p>Two things about this beam confounded scientists.</p>
 
   <p><strong>First — electricity without a wire.</strong> Every circuit anyone had ever built moved electricity along a continuous metal path, start to finish. But inside this tube, the beam crossed open, empty space with no wire connecting the two plates at all. If electricity could move through nothing, what did that actually mean about what electricity <em>was</em>? Could a form of power someday travel through open air — into a room, a building — without a single wire strung between?</p>
@@ -428,10 +458,9 @@
     <p class="exhibit-plaque">Exhibit No. 1</p>
     <h2>Does the Ray Carry Charge?</h2>
 
-    <div class="media-slot">
-      <span class="icon">&#9679;</span>
-      Insert image or GIF here
-      <div class="suggestion">suggested: a diagram or photo of an electrometer, or the real apparatus from Thomson's first experiment</div>
+    <div style="text-align:center;">
+      <img src="cathoderaymagnet.gif" alt="A real magnet bending a glowing cathode ray beam" style="max-width:280px; border-radius:4px; border:1px solid rgba(43,35,24,0.25);">
+      <p class="sim-caption" style="color: var(--text-on-parchment-dim);">The real thing — a magnet bending a lit cathode ray beam.</p>
     </div>
 
     <p>Thomson aimed the cathode ray at a device called an <strong>electrometer</strong>, which detects electric charge. He rigged up a magnet so he could bend the ray away from the electrometer's opening whenever he chose.</p>
@@ -531,10 +560,9 @@
     <p class="exhibit-plaque">Exhibit No. 3</p>
     <h2>How Big Are These Particles?</h2>
 
-    <div class="media-slot">
-      <span class="icon">&#9679;</span>
-      Insert image or GIF here
-      <div class="suggestion">suggested: a size-comparison illustration, or a photo of Thomson's magnetic deflection apparatus</div>
+    <div style="text-align:center;">
+      <img src="Thomson.jpg" alt="J.J. Thomson working in his laboratory with cathode ray tube apparatus" style="max-width:220px; border-radius:4px; border:1px solid rgba(43,35,24,0.25);">
+      <p class="sim-caption" style="color: var(--text-on-parchment-dim);">J.J. Thomson, at work in the Cavendish Laboratory.</p>
     </div>
 
     <p>Thomson used a magnet to measure how much force it took to push the beam off course. This let him compare the size of these mystery particles to the size of an atom — using hydrogen, the smallest known atom at the time, as the yardstick.</p>
@@ -571,6 +599,9 @@
   <div class="synthesis">
     <h2>The Verdict</h2>
     <p class="sub">Based on all three exhibits, Thomson reached three conclusions</p>
+    <div style="text-align:center; margin-bottom:24px;">
+      <img src="electronscathode.PNG" alt="Diagram of electrons streaming from the cathode toward the anode, ending in a glow" style="max-width:340px; border-radius:4px;">
+    </div>
     <ul class="verdict-list">
       <li><span class="verdict-num">1</span><span>Cathode rays are made of tiny, negatively charged particles — we now call these <strong>electrons</strong>.</span></li>
       <li><span class="verdict-num">2</span><span>Electrons are <strong>parts of atoms</strong>, not separate substances.</span></li>
